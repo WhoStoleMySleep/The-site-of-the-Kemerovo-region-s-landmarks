@@ -1,0 +1,38 @@
+import NextCors from 'nextjs-cors';
+
+async function handler(req: any, res: any) {
+  await NextCors(req, res, {
+    methods: ['GET', 'POST'],
+    origin: '*',
+    optionsSuccessStatus: 200,
+  });
+
+  const response = await fetch('https://opendata.mkrf.ru/v2/egrkn/$?f={%22data.general.address.fullAddress%22:{%22$gt%22:%220%22},%22data.general.region.value%22:{%22$search%22:%22%D0%9A%D0%B5%D0%BC%D0%B5%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%22}}&l=1000', {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+      "X-API-KEY": "6ec843cf40fe76a9f4c2b7e2cce4769c69b26c64bd76e973e94fd5cc05a3028b"
+    }
+  });
+
+  const result = await response.json()
+
+  const resu: any = result.data.map((element: any) => {
+    if (!!element.data.general.address.fullAddress.match(/г\.[ |[А-яЁё]*/)) {
+      if (req.query.attraction === element._id) {
+        return {
+          id: element._id,
+          name: element.data.general.name,
+          photo: element.data.general.photo,
+          address: element.data.general.address.fullAddress,
+          securityInfo: element.data.general.securityInfo
+            .split(/[1-9].\s*/g).filter((element: any) => !!element)
+        }
+      }
+    }
+  }).filter((element: any) => !!element)
+
+  res.json(resu);
+}
+
+export default handler;

@@ -1,0 +1,23 @@
+.card {
+  width: 272px;
+  //height: 330px;
+
+  &__img {
+    object-fit: cover;
+    object-position: center;
+    width: 272px;
+    height: 272px;
+    border-radius: 6px;
+  }
+
+  &__name {
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+    margin-top: 5px;
+    overflow: hidden;
+    width: 272px;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+  }
+}

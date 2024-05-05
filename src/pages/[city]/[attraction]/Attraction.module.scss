@@ -1,0 +1,38 @@
+.main {
+  margin: 0 128px;
+  padding: 0 24px;
+
+  &__title {
+    margin: 24px 0;
+  }
+
+  &__img {
+    object-fit: cover;
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+
+  &__name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  &__address {
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  &__info-list {
+    padding: 10px 0 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-top: 1px solid silver;
+  }
+
+  &__info-element {
+    list-style-type: decimal;
+  }
+}

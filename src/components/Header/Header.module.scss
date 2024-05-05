@@ -1,0 +1,24 @@
+.header {
+  margin: 0 128px;
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid silver;
+
+  &__logo,
+  &__link {
+    font-size: 18px;
+    color: #4b4b4b;
+    transition-duration: 100ms;
+
+    &:hover {
+      color: #000;
+    }
+  }
+
+  &__link {
+    font-size: 16px;
+  }
+}

@@ -5,7 +5,7 @@ import fetcher from "@/util/fetcher";
 import Layout from "@/components/Layout/Layout";
 
 export default async function Home() {
-  const data = await fetch( 'https://the-site-of-the-kemerovo-region-s-landmarks.vercel.app/api/cities', {
+  const data = await fetch( '/api/cities', {
     cache: "force-cache",
     headers: {
       "Content-Type": "application/json",

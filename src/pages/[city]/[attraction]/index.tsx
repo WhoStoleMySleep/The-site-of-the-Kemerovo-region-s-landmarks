@@ -11,7 +11,7 @@ interface Props {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
   const { city, attraction } = context.params || {};
-  const data = await fetch( `https://the-site-of-the-kemerovo-region-s-landmarks.vercel.app/${city}/${attraction}`, {
+  const data = await fetch( `/api/${city}/${attraction}`, {
     cache: "force-cache",
     headers: {
       "Content-Type": "application/json",

@@ -10,7 +10,7 @@ interface Props {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
   const { city } = context.params || {};
-  const data = await fetch( `https://the-site-of-the-kemerovo-region-s-landmarks.vercel.app/${city}`, {
+  const data = await fetch( `/api/${city}`, {
     cache: "force-cache",
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
 export default function Attractions({ city, attractions }: Props) {
   return (
-    <Layout city={city}Z>
+    <Layout city={city}>
       <main className={styles["main"]}>
         <h2 className={styles['main__subtitle']}>Популярные достопримечательности в {city}</h2>
         <ul className={styles["main__list"]}>

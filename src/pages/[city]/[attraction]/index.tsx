@@ -20,7 +20,7 @@ const Attraction = () => {
     return (
       <Layout>
           <main className={styles["main"]}>
-              {!isLoading &&
+              {!isLoading ?
                 <div className={styles["main__wrapper"]} key={data[0]?.id}>
                     <h1 className={styles['main__title']}>Достопримечательность "{data[0]?.name}" в городе {city}</h1>
                     <img src={typeof (data[0]?.photo) !== 'undefined' ? data[0].photo.url : ''}
@@ -33,6 +33,9 @@ const Attraction = () => {
                           <li key={info} className={styles["main__info-element"]}>{info}</li>
                         ))}
                     </ul>
+                </div>  :
+                <div className={styles['main__loading']}>
+                  Загрузка...
                 </div>
               }
           </main>

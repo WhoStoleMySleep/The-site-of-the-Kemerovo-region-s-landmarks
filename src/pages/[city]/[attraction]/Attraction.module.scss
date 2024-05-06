@@ -2,6 +2,13 @@
   margin: 0 128px;
   padding: 0 24px;
 
+  &__loading {
+    font-size: 18px;
+    margin: 100px auto;
+    font-weight: 1000;
+    text-align: center;
+  }
+
   &__title {
     margin: 24px 0;
   }

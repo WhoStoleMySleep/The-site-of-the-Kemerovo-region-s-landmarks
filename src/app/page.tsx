@@ -21,7 +21,7 @@ export default function Home() {
         <h1 className={styles['main__title']}>Достопримечательности в Кемеровской области</h1>
         <h2 className={styles['main__subtitle']}>Популярные города в Кемеровской области</h2>
         <ul className={styles['main__list']}>
-          {!isLoading && data && data.map((element: any) => (
+          {!isLoading ? data && data.map((element: any) => (
             <Card
               key={element.id}
               description={''}
@@ -29,7 +29,11 @@ export default function Home() {
               linkUrl={`/${element.name}`}
               title={element.name}
             />
-          ))}
+          )) :
+            <div className={styles['main__loading']}>
+              Загрузка...
+            </div>
+          }
         </ul>
       </main>
     </Layout>

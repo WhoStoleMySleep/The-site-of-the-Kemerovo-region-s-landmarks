@@ -22,7 +22,7 @@ export default function Attractions() {
       <main className={styles["main"]}>
         <h2 className={styles['main__subtitle']}>Популярные достопримечательности в {city}</h2>
         <ul className={styles["main__list"]}>
-          {!isLoading && data.map((element: any) => (
+          {!isLoading && data && data.map((element: any) => (
             <Card
               key={element.id}
               description={element.description}

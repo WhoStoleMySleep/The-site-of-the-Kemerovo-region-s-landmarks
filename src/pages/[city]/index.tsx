@@ -1,8 +1,5 @@
 import Card from "../../components/Card/Card";
 import styles from './Attractions.module.scss'
-import {useRouter} from "next/router";
-import useSWR from "swr";
-import fetcher from "@/util/fetcher";
 import Layout from "@/components/Layout/Layout";
 import {GetServerSideProps} from "next";
 
@@ -30,7 +27,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
 export default function Attractions({ city, attractions }: Props) {
   return (
-    <Layout>
+    <Layout city={city}Z>
       <main className={styles["main"]}>
         <h2 className={styles['main__subtitle']}>Популярные достопримечательности в {city}</h2>
         <ul className={styles["main__list"]}>

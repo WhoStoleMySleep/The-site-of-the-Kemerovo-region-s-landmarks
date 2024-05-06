@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
 const Attraction = ({ city, attraction }: Props) => {
     return (
-      <Layout>
+      <Layout city={city} attraction={attraction}>
           <main className={styles["main"]}>
               {attraction.length &&
                 <div className={styles["main__wrapper"]} key={attraction[0]?.id}>

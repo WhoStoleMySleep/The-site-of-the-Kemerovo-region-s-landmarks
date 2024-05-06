@@ -2,10 +2,10 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import '@/app/globals.css';
 
-const Layout = ({children}: any) => {
+const Layout = ({children, city, attraction}: any) => {
   return (
     <>
-      <Header />
+      <Header city={city} attraction={attraction} />
       {children}
       <Footer />
     </>

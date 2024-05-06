@@ -11,7 +11,7 @@ export default function Home() {
     error,
     isLoading
   } = useSWR(
-    'http://localhost:3000/api/cities',
+    '/api/cities',
     fetcher
   )
 

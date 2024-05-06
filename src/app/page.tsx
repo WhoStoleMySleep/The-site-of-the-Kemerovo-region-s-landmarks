@@ -1,19 +1,16 @@
-"use client";
 import styles from "./page.module.scss";
 import useSWR from 'swr'
 import Card from "@/components/Card/Card";
 import fetcher from "@/util/fetcher";
 import Layout from "@/components/Layout/Layout";
 
-export default function Home() {
-  const {
-    data,
-    error,
-    isLoading
-  } = useSWR(
-    '/api/cities',
-    fetcher
-  )
+export default async function Home() {
+  const data = await fetch( 'https://the-site-of-the-kemerovo-region-s-landmarks.vercel.app/api/cities', {
+    cache: "force-cache",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(async res => await res.json())
 
   return (
     <Layout>
@@ -21,7 +18,7 @@ export default function Home() {
         <h1 className={styles['main__title']}>Достопримечательности в Кемеровской области</h1>
         <h2 className={styles['main__subtitle']}>Популярные города в Кемеровской области</h2>
         <ul className={styles['main__list']}>
-          {!isLoading && !!data && data.map((element: any) => (
+          {data.length && data.map((element: any) => (
             <Card
               key={element.id}
               description={''}

@@ -1,16 +1,19 @@
+"use client"
 import styles from "./page.module.scss";
-import useSWR from 'swr'
 import Card from "@/components/Card/Card";
-import fetcher from "@/util/fetcher";
 import Layout from "@/components/Layout/Layout";
+import useSWR from "swr";
+import fetcher from "@/util/fetcher";
 
-export default async function Home() {
-  const data = await fetch( '/api/cities', {
-    cache: "force-cache",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(async res => await res.json())
+export default function Home() {
+  const {
+    data,
+    error,
+    isLoading
+  } = useSWR(
+    'http://localhost:3000/api/cities',
+    fetcher
+  )
 
   return (
     <Layout>
@@ -18,7 +21,7 @@ export default async function Home() {
         <h1 className={styles['main__title']}>Достопримечательности в Кемеровской области</h1>
         <h2 className={styles['main__subtitle']}>Популярные города в Кемеровской области</h2>
         <ul className={styles['main__list']}>
-          {data.length && data.map((element: any) => (
+          {!isLoading && data.map((element: any) => (
             <Card
               key={element.id}
               description={''}

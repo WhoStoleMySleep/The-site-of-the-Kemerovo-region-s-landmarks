@@ -1,37 +1,28 @@
+"use client"
 import Card from "../../components/Card/Card";
 import styles from './Attractions.module.scss'
 import Layout from "@/components/Layout/Layout";
-import {GetServerSideProps} from "next";
+import {useRouter} from "next/router";
+import useSWR from "swr";
+import fetcher from "@/util/fetcher";
 
-interface Props {
-  city: string | string[] | undefined;
-  attractions: any;
-}
+export default function Attractions() {
+  const {city} = useRouter().query;
+  const {
+    data,
+    error,
+    isLoading
+  } = useSWR(
+    `/api/${city}`,
+    fetcher
+  )
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-  const { city } = context.params || {};
-  const data = await fetch( `/api/${city}`, {
-    cache: "force-cache",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(async res => await res.json())
-
-  return {
-    props: {
-      city: city || '',
-      attractions: data || [],
-    },
-  };
-};
-
-export default function Attractions({ city, attractions }: Props) {
   return (
     <Layout city={city}>
       <main className={styles["main"]}>
         <h2 className={styles['main__subtitle']}>Популярные достопримечательности в {city}</h2>
         <ul className={styles["main__list"]}>
-          {attractions.length && attractions.map((element: any) => (
+          {!isLoading && data.map((element: any) => (
             <Card
               key={element.id}
               description={element.description}

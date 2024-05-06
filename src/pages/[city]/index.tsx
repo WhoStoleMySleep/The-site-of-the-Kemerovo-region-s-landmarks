@@ -18,7 +18,7 @@ export default function Attractions() {
   )
 
   return (
-    <Layout city={city}>
+    <Layout>
       <main className={styles["main"]}>
         <h2 className={styles['main__subtitle']}>Популярные достопримечательности в {city}</h2>
         <ul className={styles["main__list"]}>

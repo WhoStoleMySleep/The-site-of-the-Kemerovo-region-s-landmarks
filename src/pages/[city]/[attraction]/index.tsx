@@ -18,7 +18,7 @@ const Attraction = () => {
   )
 
     return (
-      <Layout city={city} attraction={attraction}>
+      <Layout>
           <main className={styles["main"]}>
               {!isLoading &&
                 <div className={styles["main__wrapper"]} key={data[0]?.id}>

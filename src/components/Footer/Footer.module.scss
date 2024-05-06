@@ -1,12 +1,17 @@
 .footer {
-  margin: 0 128px;
+  margin: 40px 128px 0 128px;
   padding: 0 24px;
   height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-top: 1px solid silver;
-  margin-top: 40px;
   font-size: 14px;
   opacity: 0.6;
+}
+
+@media screen and (max-width: 868px) {
+  .footer {
+    margin: 40px 0 0 0;
+  }
 }

@@ -6,7 +6,7 @@ import {useRouter} from "next/router";
 import useSWR from "swr";
 import fetcher from "@/util/fetcher";
 
-export default function Attractions() {
+  export default function Attractions() {
   const {city} = useRouter().query;
   const {
     data,
@@ -22,7 +22,7 @@ export default function Attractions() {
       <main className={styles["main"]}>
         <h2 className={styles['main__subtitle']}>Популярные достопримечательности в {city}</h2>
         <ul className={styles["main__list"]}>
-          {!isLoading && data && data.map((element: any) => (
+          {!isLoading ? data && data.map((element: any) => (
             <Card
               key={element.id}
               description={element.description}
@@ -30,7 +30,10 @@ export default function Attractions() {
               linkUrl={`/${city}/${element.id}`}
               title={element.name}
             />
-          ))}
+          )) :
+            <div className={styles['main__loading']}>
+          Загрузка...
+        </div>}
         </ul>
       </main>
     </Layout>

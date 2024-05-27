@@ -11,7 +11,7 @@ export default function Home() {
     error,
     isLoading
   } = useSWR(
-    '/api/cities',
+    'https://attractions42.vercel.app/api/cities',
     fetcher
   )
 

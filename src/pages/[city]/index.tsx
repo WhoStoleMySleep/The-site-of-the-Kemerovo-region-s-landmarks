@@ -6,14 +6,14 @@ import {useRouter} from "next/router";
 import useSWR from "swr";
 import fetcher from "@/util/fetcher";
 
-  export default function Attractions() {
+export default function Attractions() {
   const {city} = useRouter().query;
   const {
     data,
     error,
     isLoading
   } = useSWR(
-    `/api/${city}`,
+    `https://attractions42.vercel.app/api/${city}`,
     fetcher
   )
 

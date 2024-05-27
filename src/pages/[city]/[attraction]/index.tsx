@@ -13,7 +13,7 @@ const Attraction = () => {
     error,
     isLoading
   } = useSWR(
-    `/api/${city}/${attraction}`,
+    `https://attractions42.vercel.app/api/${city}/${attraction}`,
     fetcher
   )
 

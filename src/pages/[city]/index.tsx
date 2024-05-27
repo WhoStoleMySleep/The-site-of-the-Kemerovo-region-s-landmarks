@@ -1,28 +1,29 @@
-"use client"
+"use client";
 import Card from "../../components/Card/Card";
 import styles from './Attractions.module.scss'
 import Layout from "@/components/Layout/Layout";
 import {useRouter} from "next/router";
-import useSWR from "swr";
 import fetcher from "@/util/fetcher";
+import {useEffect, useState} from "react";
 
-export default function Attractions() {
-  const {city} = useRouter().query;
-  const {
-    data,
-    error,
-    isLoading
-  } = useSWR(
-    `https://attractions42.vercel.app/api/${city}`,
-    fetcher
-  )
+const Attraction = () => {
+  const {city, attraction} = useRouter().query;
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    (async function () {
+      if (city) {
+        setData(await fetcher(`/api/${city}`))
+      }
+    })()
+  }, [city]);
 
   return (
     <Layout>
       <main className={styles["main"]}>
         <h2 className={styles['main__subtitle']}>Популярные достопримечательности в {city}</h2>
         <ul className={styles["main__list"]}>
-          {!isLoading ? data && data.map((element: any) => (
+          {data ? data.map((element: any) => (
             <Card
               key={element.id}
               description={element.description}
@@ -39,3 +40,5 @@ export default function Attractions() {
     </Layout>
   );
 };
+
+export default Attraction;

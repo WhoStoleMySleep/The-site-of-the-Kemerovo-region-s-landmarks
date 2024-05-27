@@ -1,19 +1,18 @@
-"use client"
+"use client";
 import styles from "./page.module.scss";
 import Card from "@/components/Card/Card";
 import Layout from "@/components/Layout/Layout";
-import useSWR from "swr";
 import fetcher from "@/util/fetcher";
+import {useEffect, useState} from "react";
 
 export default function Home() {
-  const {
-    data,
-    error,
-    isLoading
-  } = useSWR(
-    'https://attractions42.vercel.app/api/cities',
-    fetcher
-  )
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    (async function () {
+      setData(await fetcher('/api/cities'))
+    })()
+  }, []);
 
   return (
     <Layout>
@@ -21,15 +20,14 @@ export default function Home() {
         <h1 className={styles['main__title']}>Достопримечательности в Кемеровской области</h1>
         <h2 className={styles['main__subtitle']}>Популярные города в Кемеровской области</h2>
         <ul className={styles['main__list']}>
-          {!isLoading ? data && data.map((element: any) => (
-            <Card
-              key={element.id}
-              description={''}
-              photoUrl={element.photo}
-              linkUrl={`/${element.name}`}
-              title={element.name}
-            />
-          )) :
+          {data ? data.map((item: any) => (
+              <Card
+                key={item.id}
+                description={''}
+                photoUrl={item.photo}
+                linkUrl={`/${item.name}`}
+                title={item.name}
+              />)) :
             <div className={styles['main__loading']}>
               Загрузка...
             </div>

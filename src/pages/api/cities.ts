@@ -1,4 +1,5 @@
 import NextCors from 'nextjs-cors';
+import hash from "@/util/hash";
 
 async function handler(req: any, res: any) {
   await NextCors(req, res, {
@@ -15,7 +16,7 @@ async function handler(req: any, res: any) {
     }
   });
 
-  const result = await response.json()
+  const result = hash;
 
   const repeat: any = [];
   const resu: any = result.data.map((element: any) => {

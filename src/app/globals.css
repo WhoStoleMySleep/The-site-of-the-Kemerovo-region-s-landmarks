@@ -4,7 +4,10 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #f2f2f2;
+    /*background: #f2f2f2;*/
+    background-image: url(https://celes.club/uploads/posts/2023-12/thumbs/1702646445_celes-club-p-besshovnii-fon-dlya-saita-krasivo-2.png);
+    background-repeat: repeat;
+    background-size: 400px;
 }
 
 code {

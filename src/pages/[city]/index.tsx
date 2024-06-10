@@ -8,7 +8,7 @@ import {useEffect, useState} from "react";
 
 const Attraction = () => {
   const {city, attraction} = useRouter().query;
-  const [data, setData] = useState([])
+  const [data, setData] = useState('')
 
   useEffect(() => {
     (async function () {
@@ -23,7 +23,7 @@ const Attraction = () => {
       <main className={styles["main"]}>
         <h2 className={styles['main__subtitle']}>Популярные достопримечательности в {city}</h2>
         <ul className={styles["main__list"]}>
-          {data ? data.map((element: any) => (
+          {data.length ? JSON.parse(data).map((element: any) => (
             <Card
               key={element.id}
               description={element.description}

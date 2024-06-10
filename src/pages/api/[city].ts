@@ -30,7 +30,7 @@ async function handler(req: any, res: any) {
     }
   }).filter((element: any) => !!element)
 
-  res.json(resu);
+  res.json(JSON.stringify(resu));
 }
 
 export default handler;

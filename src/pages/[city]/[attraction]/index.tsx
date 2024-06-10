@@ -8,7 +8,7 @@ import {useEffect, useState} from "react";
 
 const Attraction = () => {
   const {city, attraction} = useRouter().query;
-  const [data, setData] = useState([])
+  const [data, setData] = useState('')
 
   useEffect(() => {
     (async function () {
@@ -21,7 +21,7 @@ const Attraction = () => {
     return (
       <Layout>
           <main className={styles["main"]}>
-            {data ? data.map((item: any) => (
+            {data.length ? JSON.parse(data).map((item: any) => (
                 <div className={styles["main__wrapper"]} key={item.id}>
                   <h1 className={styles['main__title']}>Достопримечательность "{item.name}" в городе {city}</h1>
                   <img src={typeof (item.photo) !== 'undefined' ? item.photo.url : ''}

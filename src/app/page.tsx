@@ -1,16 +1,17 @@
 "use client";
 import styles from "./page.module.scss";
-import Card from "@/components/Card/Card";
 import Layout from "@/components/Layout/Layout";
 import fetcher from "@/util/fetcher";
 import {useEffect, useState} from "react";
+import Card from "@/components/Card/Card";
 
 export default function Home() {
-  const [data, setData] = useState([])
+  const [data, setData] = useState('')
 
   useEffect(() => {
     (async function () {
       setData(await fetcher('/api/cities'))
+      console.log(JSON.parse(await fetcher('/api/cities')))
     })()
   }, []);
 
@@ -20,7 +21,7 @@ export default function Home() {
         <h1 className={styles['main__title']}>Достопримечательности в Кемеровской области</h1>
         <h2 className={styles['main__subtitle']}>Популярные города в Кемеровской области</h2>
         <ul className={styles['main__list']}>
-          {data ? data.map((item: any) => (
+          {data.length ? JSON.parse(data).map((item: any) => (
               <Card
                 key={item.id}
                 description={''}
